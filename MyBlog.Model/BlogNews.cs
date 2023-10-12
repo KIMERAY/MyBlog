@@ -25,6 +25,6 @@ namespace MyBlog.Model
         [SugarColumn(IsIgnore = true)]
         public TypeInfo TypeInfo { get; set; }
         [SugarColumn(IsIgnore = true)]
-        public WriteInfo WirtieInfo { get; set; }
+        public WriteInfo WriterInfo { get; set; }
     }
 }
