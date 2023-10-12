@@ -17,14 +17,14 @@ namespace MyBlog.Repository
         public BaseRepository(ISqlSugarClient context = null):base(context)
         {
             base.Context = DbScoped.Sugar;
-            // // 创建数据库
-            // base.Context.DbMaintenance.CreateDatabase();
-            // // 创建表
-            // base.Context.CodeFirst.InitTables(
-            //     typeof(BlogNews),
-            //     typeof(TypeInfo),
-            //     typeof(WriteInfo)
-            //     );
+            // 创建数据库
+            base.Context.DbMaintenance.CreateDatabase();
+            // 创建表
+            base.Context.CodeFirst.InitTables(
+                typeof(BlogNews),
+                typeof(TypeInfo),
+                typeof(WriteInfo)
+                );
         }
         public async Task<bool> CreateAsync(TEntity entity)
         {

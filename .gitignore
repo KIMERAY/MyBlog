@@ -1,0 +1,15 @@
+﻿.vs/MyBlog/FileContentIndex
+.vs/MyBlog/v17
+MyBlog.WebApi/bin/Debug
+MyBlog.WebApi/obj
+MyBlog.IService/bin
+MyBlog.Model/bin
+MyBlog.Model/obj
+MyBlog.Repository/bin
+MyBlog.Service/bin
+MyBlog.Service/obj
+MyBlog.Repository/obj
+MyBlog.IService/obj
+MyBlog.IRepository/bin
+MyBlog.IRepository/obj
+.vs
