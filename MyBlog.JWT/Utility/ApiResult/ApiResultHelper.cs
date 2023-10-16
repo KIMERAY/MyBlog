@@ -15,10 +15,9 @@ namespace MyBlog.JWT.Utility.ApiResult
                 Total = 0
             };
         }
-
-        public static ApiResult Error(dynamic data, int total)
+        public static ApiResult Success(dynamic data, int total)
         {
-            return new ApiResult()
+            return new ApiResult
             {
                 Code = 200,
                 Data = data,
@@ -26,10 +25,9 @@ namespace MyBlog.JWT.Utility.ApiResult
                 Total = total
             };
         }
-
         public static ApiResult Error(string msg)
         {
-            return new ApiResult()
+            return new ApiResult
             {
                 Code = 500,
                 Data = null,

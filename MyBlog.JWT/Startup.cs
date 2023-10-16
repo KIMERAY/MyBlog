@@ -37,7 +37,6 @@ namespace MyBlog.JWT
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyBlog.JWT", Version = "v1" });
             });
             #region SqlSugarIOC
-
             services.AddSqlSugar(new IocConfig()
             {
                 ConnectionString = this.Configuration["SqlConn"],
