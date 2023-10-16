@@ -23,7 +23,7 @@ namespace MyBlog.Repository
             base.Context.CodeFirst.InitTables(
                 typeof(BlogNews),
                 typeof(TypeInfo),
-                typeof(WriteInfo)
+                typeof(WriterInfo)
                 );
         }
         public async Task<bool> CreateAsync(TEntity entity)
@@ -44,6 +44,11 @@ namespace MyBlog.Repository
         public virtual async Task<TEntity> FindAsync(int id)
         {
             return await base.GetByIdAsync(id); 
+        }
+
+        public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> func)
+        {
+            return await base.GetSingleAsync(func);
         }
 
         public virtual async Task<List<TEntity>> QueryAsync()

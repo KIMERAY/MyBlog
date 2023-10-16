@@ -7,7 +7,7 @@ using MyBlog.Model;
 
 namespace MyBlog.IService
 {
-    public interface IWriterInfoService:IBaseService<WriteInfo>
+    public interface IWriterInfoService:IBaseService<WriterInfo>
     {
     }
 }

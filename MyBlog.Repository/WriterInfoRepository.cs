@@ -8,7 +8,7 @@ using MyBlog.Model;
 
 namespace MyBlog.Repository
 {
-    public class WriterInfoRepository : BaseRepository<WriteInfo>, IWriterInfoRepository
+    public class WriterInfoRepository : BaseRepository<WriterInfo>, IWriterInfoRepository
     {
         public void Mthod()
         {

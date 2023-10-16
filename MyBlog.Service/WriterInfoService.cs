@@ -9,7 +9,7 @@ using MyBlog.Model;
 
 namespace MyBlog.Service
 {
-    public class WriterInfoService:BaseService<WriteInfo>,IWriterInfoService
+    public class WriterInfoService:BaseService<WriterInfo>,IWriterInfoService
     {
         private readonly IWriterInfoRepository _iWriterInfoRepository;
         public WriterInfoService(IWriterInfoRepository iWriterInfoRepository)

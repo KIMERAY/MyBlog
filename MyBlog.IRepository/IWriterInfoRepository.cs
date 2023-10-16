@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.IRepository
 {
-    public interface IWriterInfoRepository:IBaseRepository<WriteInfo>
+    public interface IWriterInfoRepository:IBaseRepository<WriterInfo>
     {
         void Mthod();
     }
