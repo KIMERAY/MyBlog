@@ -13,3 +13,5 @@ MyBlog.IService/obj
 MyBlog.IRepository/bin
 MyBlog.IRepository/obj
 .vs
+MyBlog.JWT/bin
+MyBlog.JWT/obj
