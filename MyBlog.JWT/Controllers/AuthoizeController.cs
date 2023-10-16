@@ -24,10 +24,10 @@ namespace MyBlog.JWT.Controllers
         [HttpPost("Login")]
         public async Task<ApiResult> Login(string username, string userpwd)
         {
-            //加密后的密码 123456 => asdfzxcvqwergjkl != 12345
+            //加密后的密码 123456 =>sdlkfjkldsjidaifdaskfaj == sdlkfjkldsjidaifdaskfaj
             string pwd = MD5Helper.MD5Encrypt32(userpwd);
             //数据校验
-            var writer = await _iWriterInfoService.FindAsync(c => c.UserName == username && c.UserPwd ==pwd);
+            var writer = await _iWriterInfoService.FindAsync(c => c.UserName == username && c.UserPwd == pwd);
             if (writer != null)
             {
                 //登陆成功
@@ -58,4 +58,3 @@ namespace MyBlog.JWT.Controllers
         }
     }
 }
-    
