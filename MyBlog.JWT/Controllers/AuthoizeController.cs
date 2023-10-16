@@ -14,10 +14,10 @@ namespace MyBlog.JWT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AtuhoizeController : ControllerBase
+    public class AuthoizeController : ControllerBase
     {
         private readonly IWriterInfoService _iWriterInfoService;
-        public AtuhoizeController(IWriterInfoService iWriterInfoService)
+        public AuthoizeController(IWriterInfoService iWriterInfoService)
         {
             _iWriterInfoService = iWriterInfoService;
         }
