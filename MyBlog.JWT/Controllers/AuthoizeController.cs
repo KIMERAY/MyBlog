@@ -24,11 +24,11 @@ namespace MyBlog.JWT.Controllers
         [HttpPost("Login")]
         public async Task<ApiResult> Login(string username, string userpwd)
         {
-            //加密后的密码
+            //加密后的密码 123456 =>sdlkfjkldsjidaifdaskfaj == sdlkfjkldsjidaifdaskfaj
             string pwd = MD5Helper.MD5Encrypt32(userpwd);
             //数据校验
-            var writer = await _iWriterInfoService.FindAsync(c => c.UserName == username && c.UserName == pwd);
-            if (writer!=null)
+            var writer = await _iWriterInfoService.FindAsync(c => c.UserName == username && c.UserPwd == pwd);
+            if (writer != null)
             {
                 //登陆成功
                 var claims = new Claim[]
@@ -36,10 +36,10 @@ namespace MyBlog.JWT.Controllers
                     new Claim(ClaimTypes.Name, writer.Name),
                     new Claim("Id", writer.Id.ToString()),
                     new Claim("UserName", writer.UserName)
-                    //不能放敏感信息
+                    //不能放敏感信息 
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SDMC-CJAS1-SAD-DFSFA-SADHJVF-VF"));
-                //issuer代表办法Token的Web应用程序，audience是Token的受理者
+                //issuer代表颁发Token的Web应用程序，audience是Token的受理者
                 var token = new JwtSecurityToken(
                     issuer: "http://localhost:6060",
                     audience: "http://localhost:5000",
@@ -53,7 +53,7 @@ namespace MyBlog.JWT.Controllers
             }
             else
             {
-                return ApiResultHelper.Error("账号哦或密码错误");
+                return ApiResultHelper.Error("账号或密码错误");
             }
         }
     }
