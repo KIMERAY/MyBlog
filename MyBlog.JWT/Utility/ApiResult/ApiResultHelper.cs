@@ -1,6 +1,4 @@
-﻿
-
-namespace MyBlog.JWT.Utility.ApiResult
+﻿namespace MyBlog.JWT.Utility.ApiResult
 {
     public static class ApiResultHelper
     {
@@ -15,7 +13,7 @@ namespace MyBlog.JWT.Utility.ApiResult
                 Total = 0
             };
         }
-        public static ApiResult Success(dynamic data, int total)
+        public static ApiResult Success(dynamic data,int total)
         {
             return new ApiResult
             {

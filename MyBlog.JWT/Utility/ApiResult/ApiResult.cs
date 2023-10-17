@@ -1,5 +1,4 @@
-
-namespace MyBlog.JWT.Utility.ApiResult
+﻿namespace MyBlog.JWT.Utility.ApiResult
 {
     public class ApiResult
     {
