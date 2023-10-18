@@ -9,7 +9,10 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using MyBlog.IRepository;
 using MyBlog.IService;
 using MyBlog.Repository;
@@ -52,6 +55,11 @@ namespace MyBlog.WebApi
 
             services.AddCustomIOC();
 
+            #endregion
+
+            #region JWT鉴权
+
+            services.AddCustomJWT();
 
             #endregion
         }
@@ -67,7 +75,9 @@ namespace MyBlog.WebApi
             }
 
             app.UseRouting();
-
+            //添加到管道中 鉴权
+            app.UseAuthentication();
+            //授权
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
@@ -84,6 +94,27 @@ namespace MyBlog.WebApi
             services.AddScoped<ITypeInfoService, TypeInfoService>();
             services.AddScoped<IWriterInfoRepository, WriterInfoRepository>();
             services.AddScoped<IWriterInfoService, WriterInfoService>();
+            return services;
+        }
+
+        public static IServiceCollection AddCustomJWT(this IServiceCollection services)
+        {
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SDMC-CJAS1-SAD-DFSFA-SADHJVF-VF")),
+                        ValidateIssuer = true,
+                        ValidIssuer = "http://localhost:6060",
+                        ValidateAudience = true,
+                        ValidAudience = "http://localhost:5000",
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.FromMinutes(60)
+                    };
+                });
             return services;
         }
     }
