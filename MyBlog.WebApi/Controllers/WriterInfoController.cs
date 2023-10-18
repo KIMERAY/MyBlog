@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
+using MyBlog.Model.DTO;
 using MyBlog.WebApi.Utility._MD5;
 using MyBlog.WebApi.Utility.ApiResult;
 
@@ -49,8 +51,19 @@ namespace MyBlog.WebApi.Controllers
         public async Task<ApiResult> Edit(string name)
         {
             int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
-            //TODO
-            return ApiResultHelper.Error("");
+            var writer = await _iWriterInfoService.FindAsync(id);
+            writer.Name = name;
+            bool b = await _iWriterInfoService.EditAsync(writer);
+            if (!b) return ApiResultHelper.Error("修改失败");
+            return ApiResultHelper.Success("修改成功");
+        }
+        [AllowAnonymous]
+        [HttpGet("FindWriter")]
+        public async Task<ApiResult> FindWriter([FromServices]IMapper iMapper, int id)
+        {
+            var writer = await _iWriterInfoService.FindAsync(id);
+            var writerDTO = iMapper.Map<WriterDTO>(writer);
+            return ApiResultHelper.Success(writerDTO);
         }
     }
 }

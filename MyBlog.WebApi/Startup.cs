@@ -17,6 +17,7 @@ using MyBlog.IRepository;
 using MyBlog.IService;
 using MyBlog.Repository;
 using MyBlog.Service;
+using MyBlog.WebApi.Utility._AutoMapper;
 using SqlSugar.IOC;
 
 namespace MyBlog.WebApi
@@ -85,6 +86,12 @@ namespace MyBlog.WebApi
             #region JWT¼øÈ¨
 
             services.AddCustomJWT();
+
+            #endregion
+
+            #region AutoMapper
+
+            services.AddAutoMapper(typeof(CustomAutoMapperProfile));    
 
             #endregion
         }
