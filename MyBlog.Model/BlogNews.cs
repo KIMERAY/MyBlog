@@ -18,7 +18,7 @@ namespace MyBlog.Model
         public int BrowseCount { get; set; }
         public int LikeCount { get; set; }
         public int TypeId { get; set; }
-        public int WriteId { get; set; }
+        public int WriterId { get; set; }
         /// <summary>
         /// 类型，不映射到数据库
         /// </summary>

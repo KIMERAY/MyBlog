@@ -46,7 +46,7 @@ namespace MyBlog.WebApi.Controllers
                 Time = DateTime.Now,
                 Title = title,
                 TypeId = typeid,
-                WriteId = 1
+                WriterId = 1
             };
             bool b = await _iBlogNewsService.CreateAsync(blogNews);
             if (!b)
