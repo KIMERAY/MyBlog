@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
 using MyBlog.WebApi.Utility.ApiResult;
+using SqlSugar;
 
 namespace MyBlog.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class BlogNewsController : ControllerBase
     {
         private readonly IBlogNewsService _iBlogNewsService;
@@ -24,7 +25,8 @@ namespace MyBlog.WebApi.Controllers
         [HttpGet("BlogNews")]
         public async Task<ActionResult<ApiResult>> GetBlogNews()
         {
-            var data=await _iBlogNewsService.QueryAsync();
+            int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+            var data=await _iBlogNewsService.QueryAsync(c=>c.WriterId==id);
             if (data == null) return ApiResultHelper.Error("没有更多的文章");
             return ApiResultHelper.Success(data);
         }
@@ -46,7 +48,7 @@ namespace MyBlog.WebApi.Controllers
                 Time = DateTime.Now,
                 Title = title,
                 TypeId = typeid,
-                WriterId = 1
+                WriterId = Convert.ToInt32(this.User.FindFirst("Id").Value)
             };
             bool b = await _iBlogNewsService.CreateAsync(blogNews);
             if (!b)
